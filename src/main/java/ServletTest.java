@@ -51,6 +51,8 @@ public class ServletTest extends HttpServlet {
 		response.sendRedirect("res.jsp");
 
 		// 或者使用转发到另一个页面
+		
+		
 		// request.getRequestDispatcher("page2.jsp").forward(request, response);
 	}
 //
