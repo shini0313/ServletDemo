@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +18,7 @@
     <input type="hidden" name="geGeneralTags" id="geRegistType" value="Insert">
     <input type="hidden" name="geGeneralTags" id="geRegistStep" value="registration:start">
     <input type="hidden" name="geGeneralTags" id="geErrorType" value="">
+    <input type="hidden" name="_charset_" value="UTF-8">
     
     <div align="center">
         
@@ -69,7 +70,7 @@
 
         <div id="contents">
             <h2 class="path">楽天会員登録</h2>
-            <form name="Regist1Form" method="post" action="./test" autocomplete="off">
+            <form name="Regist1Form" method="post" action="./last" autocomplete="off">
                 <input type="hidden" name="service_id" value="top">
 
 
@@ -92,13 +93,13 @@
                                 <em>&lt;半角英数字&gt;</em><br>
 
                                 <em>他の会員が登録済みのメールアドレスは登録できません。</em><br>
-                                <input type="text" name="email" maxlength="100" size="35" value=""
+                                <input type="text" name="email" maxlength="100" size="35" value="<%= request.getParameter("email") %>"
                                     onchange="email2.value='';" class="text email" title=""
                                     style="color: rgb(153, 153, 153);">
                                 <br>
                                 <br>
                                 <em class="em"><em class="em">確認のためもう一度入力してください（コピー・貼り付けはしないでください。）</em></em><br>
-                                <input type="text" name="email2" maxlength="100" size="35" value="" class="text email2" title="" style="color: rgb(153, 153, 153);">
+                                <input type="text" name="email2" maxlength="100" size="35" value="<%= request.getParameter("email2") %>" class="text email2" title="" style="color: rgb(153, 153, 153);">
                                 <br>
                                 <br>
                             </td>
@@ -119,7 +120,7 @@
                                 <input type="radio" name="radio_mail" value="1">メールアドレス以外をユーザIDとして使用<br>
 
                                 <em>&lt;6文字以上・半角英数字&gt; 数字だけにすることはできません</em><br>
-                                <div id="user"><input type="text" name="u" maxlength="100" size="50" value=""
+                                <div id="user"><input type="text" name="u" maxlength="100" size="50" value="<%= request.getParameter("u") %>"
                                         class="text userid" title="(例) rakuten1234" style="color: rgb(153, 153, 153);">
                                 </div>
 
@@ -139,7 +140,7 @@
                                 <em>&lt;6文字以上半角英数字&gt;</em><br>
                                 <em>「ユーザID」と同じものは登録できません</em><br>
                                 <em>第三者によるログインを防ぐために、できるだけ複雑なものを設定してください。</em><br>
-                                <input type="password" name="p" maxlength="128" size="20" value=""
+                                <input type="password" name="p" maxlength="128" size="20" value="**********"
                                     
                                      id="p_id" title=""><br>
 
@@ -195,10 +196,10 @@
 
 
                                 （姓）
-                                <input type="text" name="lname" maxlength="85" size="28" value="" class="text name"
+                                <input type="text" name="lname" maxlength="85" size="28" value="<%= request.getParameter("lname") %> " class="text name"
                                     title="(例)楽天" style="color: rgb(153, 153, 153);">
                                 （名）
-                                <input type="text" name="fname" maxlength="85" size="28" value="" class="text name"
+                                <input type="text" name="fname" maxlength="85" size="28" value="<%= request.getParameter("fname") %>" class="text name"
                                     title="(例)太郎" style="color: rgb(153, 153, 153);">
                                 <br>
 
@@ -214,10 +215,10 @@
                             <td>
                                 <em>&lt;全角カタカナのみ&gt;</em><br>
                                 （姓）
-                                <input type="text" name="lname_kana" maxlength="85" size="28" value="" class="text name"
+                                <input type="text" name="lname_kana" maxlength="85" size="28" value="<%= request.getParameter("lname_kana") %>" class="text name"
                                     title="(例)ラクテン" style="color: rgb(153, 153, 153);">
                                 （名）
-                                <input type="text" name="fname_kana" maxlength="85" size="28" value="" class="text name"
+                                <input type="text" name="fname_kana" maxlength="85" size="28" value="<%= request.getParameter("fname_kana") %>" class="text name"
                                     title="(例)タロウ" style="color: rgb(153, 153, 153);">
                                 <br>
                             </td>
@@ -255,8 +256,9 @@
                 </p>
                 
                 <p class="submit">
-                    <a href="kakunin.jsp">
-                          <input type="submit" name="execMethod" value="同意して次へ" onclick="validateAndSubmit(event)">
+                  <a href="last.jsp">
+                          <input type="submit" name="execMethod" value="確認して次へ" onclick="validateAndSubmit(event)">
+                     
                              <script>
                                  function validateAndSubmit(event) {
                                      event.preventDefault();
@@ -316,15 +318,27 @@
                                          alert("氏名（フリガナ）は全角カタカナで入力してください");
                                          return;
                                      }
+
+                                     <h1>Hello, <%= request.getAttribute("email") %>!</h1>
+                                     <h2>Hello, <%= request.getAttribute("email2") %>!</h2>
+                                     <h3>Hello, <%= request.getAttribute("userID") %>!</h3>
+                                     <h4>Hello, <%= request.getAttribute("password") %>!</h4>
+                                     <h5>Hello, <%= request.getAttribute("lname") %>!</h5>
+                                     <h6>Hello, <%= request.getAttribute("fname") %>!</h6>
+                                     <h7>Hello, <%= request.getAttribute("lnameKana") %>!</h7>
+                                     <h8>Hello, <%= request.getAttribute("fnameKana") %>!</h8>
+                                    
+                                     
+                                     <p>This is the result page.</p>
                                     
                                      document.forms["Regist1Form"].submit();
-                                    
                                  }
                            </script>
                     </a>
                 </p>
                 
-                
+                 
+        </form>
             </form>
         </div>
     </div>
