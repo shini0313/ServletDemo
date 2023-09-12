@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletTest
@@ -29,11 +30,11 @@ public class ServletTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		// 重定向到另一个页面
-		response.sendRedirect("res.jsp");
+		response.sendRedirect("touroku.jsp");
 		//request.getRequestDispatcher("result.jsp").forward(request, response);
 
 		// 或者使用转发到另一个页面
@@ -48,40 +49,67 @@ public class ServletTest extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		String email = request.getParameter("email");
 		String email2 = request.getParameter("email2");
-		String userID = request.getParameter("u");
+		String userId = request.getParameter("u");
 		String password = request.getParameter("p");
-		String lname = request.getParameter("lname");
-	    String fname = request.getParameter("fname");
-	    String lnameKana = request.getParameter("lname_kana");
-	    String fnameKana = request.getParameter("fname_kana");
+		String lastname = request.getParameter("lname");
+		String firstname = request.getParameter("fname");
+		String lastnameKana = request.getParameter("lname_kana");
+		String firstnameKana = request.getParameter("fname_kana");
+
+		HttpSession session = request.getSession();
+		session.setAttribute("email", email);
+		session.setAttribute("email2", email2);
+		session.setAttribute("userId", userId);
+		session.setAttribute("password", password);
+		session.setAttribute("lname", lastname);
+		session.setAttribute("fname", firstname);
+		session.setAttribute("lnameKana", lastnameKana);
+		session.setAttribute("fnameKana", firstnameKana);
 
 		request.setAttribute("email", email);
 		request.setAttribute("email2", email2);
-		request.setAttribute("userID", userID);
+		request.setAttribute("userId", userId);
 		request.setAttribute("password", password);
-		request.setAttribute("lname", lname);
-		request.setAttribute("fname", fname);
-		request.setAttribute("lnameKana", lnameKana);
-		request.setAttribute("fnameKana", fnameKana);
-		
-		
-		System.out.println("Email: " + email);
-		System.out.println("Confirm Email: " + email2);
-		System.out.println("User ID: " + userID);
-		System.out.println("Password: " + password);
-		System.out.println("Last Name: " + lname);
-		System.out.println("First Name: " + fname);
-		System.out.println("Last Name (Kana): " + lnameKana);
-		System.out.println("First Name (Kana): " + fnameKana);
-		//request.getRequestDispatcher("kakunin.jsp").forward(request, response);
+		request.setAttribute("lname", lastname);
+		request.setAttribute("fname", firstname);
+		request.setAttribute("lnameKana", lastnameKana);
+		request.setAttribute("fnameKana", firstnameKana);
 
-		// 请求转发到另一个 JSP 页面
-		response.setCharacterEncoding("UTF-8");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("kakunin.jsp");
-		dispatcher.forward(request, response);
+		boolean isUserIdInUse = checkIfUserIDInUse(userId);
+
+		if (isUserIdInUse) {
+
+			request.setAttribute("userIDError", "ユーザーIDは使用されでいます");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("touroku.jsp");
+			dispatcher.forward(request, response);
+		} else {
+
+			response.setCharacterEncoding("UTF-8");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("kakunin.jsp");
+			dispatcher.forward(request, response);
+		}
+
 	}
+
+	private boolean checkIfUserIDInUse(String userId) {
+
+		return false;
+	}
+
+	//		System.out.println("Email: " + email);
+	//		System.out.println("Confirm Email: " + email2);
+	//		System.out.println("User ID: " + userID);
+	//		System.out.println("Password: " + password);
+	//		System.out.println("Last Name: " + lname);
+	//		System.out.println("First Name: " + fname);
+	//		System.out.println("Last Name (Kana): " + lnameKana);
+	//		System.out.println("First Name (Kana): " + fnameKana);
+	//request.getRequestDispatcher("kakunin.jsp").forward(request, response);
+
+	// 请求转发到另一个 JSP 页面
 
 }
