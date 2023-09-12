@@ -41,9 +41,6 @@ public class ServletKakunin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-
 		response.sendRedirect("kakunin.jsp");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -54,7 +51,6 @@ public class ServletKakunin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");
@@ -72,11 +68,9 @@ public class ServletKakunin extends HttpServlet {
 		System.out.println(firstname);
 		System.out.println(lastnameKana);
 		System.out.println(firstnameKana);
-		
-		
-
+	
 		try {
-			  // 创建数据库连接
+		
             Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(url, user, dbPassword);
 			stmt = conn.createStatement();
@@ -91,8 +85,6 @@ public class ServletKakunin extends HttpServlet {
             stmt.close();
             conn.close();
 
-
-			// 请求转发到另一个JSP页面
 			request.setCharacterEncoding("UTF-8");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("last.jsp");
 			dispatcher.forward(request, response);

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao;
 import obj.User;
 
 /**
@@ -23,7 +24,7 @@ public class UserList extends HttpServlet {
 	 */
 	public UserList() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
@@ -31,19 +32,15 @@ public class UserList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.setCharacterEncoding("UTF-8");
-		
 
-		
 		UserDao userDao = new UserDao();
 		List<User> userList = userDao.getAllUsers();
 		request.setAttribute("userList", userList);
 
 		response.setCharacterEncoding("UTF-8");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("xx.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("user.jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
 
 	/**
@@ -51,7 +48,6 @@ public class UserList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
