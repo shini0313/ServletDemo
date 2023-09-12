@@ -34,7 +34,7 @@ public class UserList extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.setCharacterEncoding("UTF-8");
 		
-		
+
 		
 		UserDao userDao = new UserDao();
 		List<User> userList = userDao.getAllUsers();
