@@ -33,8 +33,6 @@ public class ServletTouroku extends HttpServlet {
 		response.sendRedirect("touroku.jsp");
 	
 	}
-
-	//
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -70,7 +68,7 @@ public class ServletTouroku extends HttpServlet {
 		request.setAttribute("lnameKana", lastnameKana);
 		request.setAttribute("fnameKana", firstnameKana);
 
-		boolean isUserIdInUse = checkIfUserIDInUse(userId);
+		boolean isUserIdInUse = checkIfUserIdInUse(userId);
 
 		if (isUserIdInUse) {
 
@@ -87,7 +85,7 @@ public class ServletTouroku extends HttpServlet {
 
 	}
 
-	private boolean checkIfUserIDInUse(String userId) {
+	private boolean checkIfUserIdInUse(String userId) {
 
 		return false;
 	}

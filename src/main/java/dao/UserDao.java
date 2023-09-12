@@ -1,4 +1,5 @@
 package dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,14 +24,12 @@ public class UserDao {
 
 		try {
 
-			
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(url, user, dbPassword);
 			stmt = conn.createStatement();
 
 			String sql = "SELECT * FROM rakuten";
 			ResultSet rs = stmt.executeQuery(sql);
-		
 
 			while (rs.next()) {
 				User user = new User();
@@ -45,10 +44,32 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			
+
 			e.printStackTrace();
 		}
 
 		return users;
+	}
+
+	public void insertUser(User u) {
+		try {
+			Class.forName("org.postgresql.Driver");
+			conn = DriverManager.getConnection(url, user, dbPassword);
+			stmt = conn.createStatement();
+
+			String sql = "INSERT INTO public.rakuten (user_id, email, password, last_name, first_name, last_name_kana, first_name_kana) "
+					+ "VALUES ('" + u.getUserId() + "', '" + u.getEmail() + "', '" + u.getPassword() + "', '"
+					+ u.getLastName()
+					+ "', '" + u.getFirstName() + "', '" + u.getLastNameKana() + "', '" + u.getFirstNameKana() + "')";
+			
+			stmt.executeUpdate(sql);
+
+			stmt.close();
+			conn.close();
+
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+
+		}
 	}
 }

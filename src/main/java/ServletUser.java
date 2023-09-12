@@ -16,13 +16,13 @@ import obj.User;
  * Servlet implementation class UserList
  */
 @WebServlet("/UserList")
-public class UserList extends HttpServlet {
+public class ServletUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserList() {
+	public ServletUser() {
 		super();
 
 	}
