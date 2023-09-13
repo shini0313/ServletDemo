@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class last
  */
-@WebServlet("/last")
-public class Last extends HttpServlet {
+@WebServlet("/kanryou")
+public class Kanryou extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Last() {
+    public Kanryou() {
         super();
     }
 
@@ -26,7 +26,7 @@ public class Last extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("last.jsp");
+		response.sendRedirect("kanryou.jsp");
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class ServletUser extends HttpServlet {
 
 	}
 
-	/**
+	/**お客様情報
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

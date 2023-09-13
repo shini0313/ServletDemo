@@ -18,7 +18,10 @@ public class UserDao {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rset = null;
-
+/**
+ * 情報検索
+ * @return
+ */
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();
 
@@ -50,7 +53,10 @@ public class UserDao {
 
 		return users;
 	}
-
+/**
+ * 情報登録
+ * @param u
+ */
 	public void insertUser(User u) {
 		try {
 			Class.forName("org.postgresql.Driver");

@@ -24,7 +24,7 @@ public class ServletTouroku extends HttpServlet {
 	
 	}
 
-	/**
+	/**登録画面の表示
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +33,7 @@ public class ServletTouroku extends HttpServlet {
 		response.sendRedirect("touroku.jsp");
 	
 	}
-	/**
+	/**確認画面えへ移る
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

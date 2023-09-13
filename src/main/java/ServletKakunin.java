@@ -36,7 +36,7 @@ public class ServletKakunin extends HttpServlet {
 
 	}
 
-	/**
+	/**確認画面の表示
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +46,7 @@ public class ServletKakunin extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 	}
 
-	/**
+	/**完了画面へ移る
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -55,7 +55,7 @@ public class ServletKakunin extends HttpServlet {
 		UserDao userDao = new UserDao();
 	       userDao.insertUser(u);
 			request.setCharacterEncoding("UTF-8");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("last.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("kanryou.jsp");
 			dispatcher.forward(request, response);
 	
 			response.sendRedirect("kakunin.jsp");
