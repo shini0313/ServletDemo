@@ -53,15 +53,32 @@ public class ServletKakunin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		User u=new User();
+		  String email = (String) request.getSession().getAttribute("email");
+		    String userId = (String) request.getSession().getAttribute("userId");
+		    String password = (String) request.getSession().getAttribute("password");
+		    String lastname = (String) request.getSession().getAttribute("lname");
+		    String firstname = (String) request.getSession().getAttribute("fname");
+		    String lastnameKana = (String) request.getSession().getAttribute("lnameKana");
+		    String firstnameKana = (String) request.getSession().getAttribute("fnameKana");
+		System.out.println(userId);
+
+		User user = new User();
+		user.setUserId(userId);
+		user.setPassword(password);
+		user.setEmail(email);
+		user.setLastName(lastname);
+		user.setFirstName(firstname);
+		user.setLastNameKana(lastnameKana);
+		user.setFirstNameKana(firstnameKana);
+
 		UserDao userDao = new UserDao();
-	       userDao.insertUser(u);
-			request.setCharacterEncoding("UTF-8");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("kanryou.jsp");
-			dispatcher.forward(request, response);
-	
-			response.sendRedirect("kakunin.jsp");
-		
+		userDao.insertUser(user);
+		request.setCharacterEncoding("UTF-8");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("kanryou.jsp");
+		dispatcher.forward(request, response);
+
+		response.sendRedirect("kakunin.jsp");
+
 	}
 
 }

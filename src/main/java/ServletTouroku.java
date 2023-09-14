@@ -52,6 +52,7 @@ public class ServletTouroku extends HttpServlet {
 		String firstname = request.getParameter("fname");
 		String lastnameKana = request.getParameter("lname_kana");
 		String firstnameKana = request.getParameter("fname_kana");
+	
 
 		HttpSession session = request.getSession();
 		session.setAttribute("email", email);
@@ -93,9 +94,11 @@ public class ServletTouroku extends HttpServlet {
 
 		UserDao userDao = new UserDao();
 		User user = userDao.userIdUser(userId);
-		if (user != null) {
+		if (user.getUserId() != null) {
+
 			return true;
 		} else {
+
 			return false;
 		}
 	}

@@ -66,9 +66,10 @@ public class UserDao {
 			stmt = conn.createStatement();
 
 			String sql = "INSERT INTO public.rakuten (user_id, email, password, last_name, first_name, last_name_kana, first_name_kana) "
-					+ "VALUES ('" + u.getUserId() + "', '" + u.getEmail() + "', '" + u.getPassword() + "', '"
+					+ "VALUES ('" + u.getUserId()+ "', '" + u.getEmail() + "', '" + u.getPassword() + "', '"
 					+ u.getLastName()
 					+ "', '" + u.getFirstName() + "', '" + u.getLastNameKana() + "', '" + u.getFirstNameKana() + "')";
+			System.out.println(sql);
 
 			stmt.executeUpdate(sql);
 
