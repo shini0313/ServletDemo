@@ -242,7 +242,7 @@
 
                                      var emailInput = document.querySelector("input[name='email']");
                                      var email2Input = document.querySelector("input[name='email2']");
-                                     var userIDInput = document.querySelector("input[name='u']");
+                                     var useridInput = document.querySelector("input[name='u']");
                                      var passwordInput = document.querySelector("input[name='p']");
                                      var lnameInput = document.querySelector("input[name='lname']");
                                      var fnameInput = document.querySelector("input[name='fname']");
@@ -251,7 +251,7 @@
 
                                      var email = emailInput.value.trim();
                                      var email2 = email2Input.value.trim();
-                                     var userID = userIDInput.value.trim();
+                                     var userid = userIDInput.value.trim();
                                      var password = passwordInput.value.trim();
                                      var lname = lnameInput.value.trim();
                                      var fname = fnameInput.value.trim();
@@ -275,12 +275,12 @@
                                          return;
                                      }
 
-                                     if (userID.length < 6) {
+                                     if (userid.length < 6) {
                                          alert("ユーザーIDの長さは6文字以上である必要があります");
                                          return;
                                      }
                                      var alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/;
-                                     if (!alphanumericRegex.test(userID)) {
+                                     if (!alphanumericRegex.test(userid)) {
                                          alert("ユーザーIDはアルファベットと数字を少なくとも1つ含む必要があります");
                                          return;
                                      }
@@ -298,7 +298,7 @@
 
                                      <h1>Hello, <%=request.getAttribute("email")%>!</h1>
                                      <h2>Hello, <%=request.getAttribute("email2")%>!</h2>
-                                     <h3>Hello, <%=request.getAttribute("userID")%>!</h3>
+                                     <h3>Hello, <%=request.getAttribute("userid")%>!</h3>
                                      <h4>Hello, <%=request.getAttribute("password")%>!</h4>
                                      <h5>Hello, <%=request.getAttribute("lname")%>!</h5>
                                      <h6>Hello, <%=request.getAttribute("fname")%>!</h6>

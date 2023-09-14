@@ -18,10 +18,11 @@ public class UserDao {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rset = null;
-/**
- * 情報検索
- * @return
- */
+
+	/**
+	 * ユーザー情報全獲得
+	 * @return
+	 */
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();
 
@@ -53,10 +54,11 @@ public class UserDao {
 
 		return users;
 	}
-/**
- * 情報登録
- * @param u
- */
+
+	/**
+	 * ユーザー情報登録
+	 * @param u
+	 */
 	public void insertUser(User u) {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -67,7 +69,7 @@ public class UserDao {
 					+ "VALUES ('" + u.getUserId() + "', '" + u.getEmail() + "', '" + u.getPassword() + "', '"
 					+ u.getLastName()
 					+ "', '" + u.getFirstName() + "', '" + u.getLastNameKana() + "', '" + u.getFirstNameKana() + "')";
-			
+
 			stmt.executeUpdate(sql);
 
 			stmt.close();
@@ -78,4 +80,26 @@ public class UserDao {
 
 		}
 	}
+
+	public User userIdUser(String userId) {
+		User u = new User();
+		try {
+
+			Class.forName("org.postgresql.Driver");
+			conn = DriverManager.getConnection(url, user, dbPassword);
+			stmt = conn.createStatement();
+
+			String sql = "SELECT * FROM rakuten WHERE user_id = '" + userId + "'";
+			rset = stmt.executeQuery(sql);
+			while (rset.next()) {
+				u.setUserId(rset.getString("user_id"));
+				System.out.println(sql);
+
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return u;
+	}
+
 }

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.UserDao;
+import obj.User;
+
 /**
  * Servlet implementation class ServletTest
  */
@@ -21,7 +24,7 @@ public class ServletTouroku extends HttpServlet {
 	 */
 	public ServletTouroku() {
 		super();
-	
+
 	}
 
 	/**登録画面の表示
@@ -29,16 +32,17 @@ public class ServletTouroku extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
+
 		response.sendRedirect("touroku.jsp");
-	
+
 	}
-	/**確認画面えへ移る
+
+	/**確認画面えへ
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("text/html;charset=UTF-8");
 		String email = request.getParameter("email");
 		String email2 = request.getParameter("email2");
@@ -87,7 +91,13 @@ public class ServletTouroku extends HttpServlet {
 
 	private boolean checkIfUserIdInUse(String userId) {
 
-		return false;
+		UserDao userDao = new UserDao();
+		User user = userDao.userIdUser(userId);
+		if (user != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
